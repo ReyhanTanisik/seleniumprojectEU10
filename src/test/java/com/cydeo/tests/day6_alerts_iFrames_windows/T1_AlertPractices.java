@@ -55,4 +55,24 @@ public class T1_AlertPractices {
 
 
     }
+
+    @Test
+    public void alert_test2(){
+
+        //3. Click to “Click for JS Confirm” button
+
+        WebElement JsConfirmButton= driver.findElement(By.xpath("//button[@onclick='jsConfirm()']"));
+        JsConfirmButton.click();
+        //4. Click to OK button from the alert
+        Alert alert=driver.switchTo().alert();
+        alert.accept();
+
+        //5. Verify “You clicked: Ok” text is displayed.
+        WebElement resultText2= driver.findElement(By.xpath("//p[@id='result']"));
+        Assert.assertTrue(resultText2.isDisplayed(),"Result text is not displayed");
+
+        String expectedText= "You clicked: Ok";
+        String actualText=resultText2.getText();
+        Assert.assertEquals(expectedText,actualText);
+    }
 }
