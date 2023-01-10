@@ -75,4 +75,31 @@ public class T1_AlertPractices {
         String actualText=resultText2.getText();
         Assert.assertEquals(expectedText,actualText);
     }
+
+
+    @Test
+    public void alert_test3(){
+        //Click to “Click for JS Prompt” button
+
+        WebElement JsPromptButton= driver.findElement(By.xpath("//button[@onclick='jsPrompt()']"));
+        JsPromptButton.click();
+
+        //4. Send “hello” text to alert
+        Alert alert=driver.switchTo().alert();
+        alert.sendKeys("hello");
+
+        //5. Click to OK button from the alert
+        alert.accept();
+        //6. Verify “You entered:  hello” text is displayed.
+
+        WebElement resultText2= driver.findElement(By.xpath("//p[@id='result']"));
+        Assert.assertTrue(resultText2.isDisplayed(),"Result text is not displayed");
+
+        String expectedText= "You entered: hello";
+        String actualText=resultText2.getText();
+        Assert.assertEquals(expectedText,actualText);
+
+
+
+    }
 }
